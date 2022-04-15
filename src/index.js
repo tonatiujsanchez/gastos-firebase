@@ -34,7 +34,7 @@ const Index = () => {
     return (
         <>
             <Helmet>
-                <link rel="shortcut" href={favicon} type="image/x-icon" />
+                <link rel="shortcut" href={ favicon } type="image/x-icon" />
             </Helmet>
             <BrowserRouter>
                 <Contenedor>

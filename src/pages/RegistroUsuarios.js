@@ -56,10 +56,10 @@ const RegistroUsuarios = () => {
             return
         }
 
-        authFirebase(email, password)
+        crearCuenta(email, password)
     }
 
-    const authFirebase = async(email, password) =>{
+    const crearCuenta = async(email, password) =>{
         try {
             const userCredential = await createUserWithEmailAndPassword( auth, email, password)
             console.log(userCredential.user)
