@@ -17,6 +17,11 @@ import RegistroUsuarios from './pages/RegistroUsuarios';
 
 import favicon from './images/logo.png'
 import Fondo from './elements/Fondo';
+import { AuthProvider } from './context/AuthContext';
+
+
+import RutaPrivada from './routes/RutaPrivada';
+import RutaPublica from './routes/RutaPublica';
 
 
 
@@ -31,23 +36,61 @@ WebFont.load({
 
 
 const Index = () => {
+
+
     return (
         <>
             <Helmet>
                 <link rel="shortcut" href={ favicon } type="image/x-icon" />
             </Helmet>
-            <BrowserRouter>
-                <Contenedor>
-                    <Routes>
-                        <Route path='/iniciar-sesion' element={ <InicioSesion /> } />
-                        <Route path='/crear-cuenta' element={ <RegistroUsuarios /> } />
-                        <Route path='/categorias' element={ <GastosPorCategoria /> } />
-                        <Route path='/lista' element={ <ListaGastos /> } />
-                        <Route path='/editar/:id' element={ <EditarGasto /> } />
-                        <Route path='/' element={ <App /> } />
-                    </Routes>
-                </Contenedor>
-            </BrowserRouter>
+            
+            <AuthProvider>
+                <BrowserRouter>
+                    <Contenedor>
+                        <Routes>
+                            <Route path='/iniciar-sesion' element={ 
+                                <RutaPublica>
+                                    <InicioSesion /> 
+                                </RutaPublica>
+                            }/>
+                            <Route path='/crear-cuenta' element={ 
+                                <RutaPublica>
+                                    <RegistroUsuarios /> 
+                                </RutaPublica>
+                            }/>
+
+                            <Route path="/categorias" element={
+                                <RutaPrivada >
+                                    <GastosPorCategoria /> 
+                                </RutaPrivada>
+                            } />
+
+                            <Route path="/lista" element={
+                                <RutaPrivada >
+                                    <ListaGastos /> 
+                                </RutaPrivada>
+                            }/>
+
+                            <Route path="/editar" element={
+                                <RutaPrivada >
+                                    <EditarGasto /> 
+                                </RutaPrivada>
+                            }/>
+
+                            <Route path="/" element={
+                                <RutaPrivada >
+                                    <App /> 
+                                </RutaPrivada>
+                            }/>
+
+                            {/* <Route path='/categorias' element={ <GastosPorCategoria /> } />
+                            <Route path='/lista' element={ <ListaGastos /> } />
+                            <Route path='/editar/:id' element={ <EditarGasto /> } />
+                            <Route path='/' element={ <App /> } /> */}
+                        </Routes>
+                    </Contenedor>
+                </BrowserRouter>
+            </AuthProvider>
             <Fondo />
         </>
     )
