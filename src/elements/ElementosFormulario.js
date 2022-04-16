@@ -41,14 +41,14 @@ const Formulario = styled.form`
 `;
 
 const Input = styled.input`
-	font-size: 2.5rem; /* 40px */
-	text-transform: uppercase;
+	font-size: 2.9rem; /* 40px */
+	/* text-transform: uppercase; */
 	border: none;
 	border-bottom: 2px solid ${theme.grisClaro};
 	outline: none;
 
 	@media(max-width: 60rem){ /* 950px */
-		font-size: 2.2rem; /* 24px */
+		font-size: 2.4rem; /* 24px */
 	}
 `;
 

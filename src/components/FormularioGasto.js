@@ -1,14 +1,30 @@
 import { useState } from 'react'
-import { ContenedorFiltros, Formulario, Input, InputGrande, ContenedorBoton } from '../elements/ElementosFormulario'
+
+import useAuth from '../hooks/useAuth'
 import useForm from '../hooks/useForm'
+
+import agregarGasto from '../firebase/agregarGasto'
+
+import DatePicker from './DatePicker'
+
+// Tranformar
+import getUnixTime from 'date-fns/getUnixTime'
+// Revertir transformación 
+import fromUnixTime from 'date-fns/fromUnixTime'
+
+import { ContenedorFiltros, Formulario, Input, InputGrande, ContenedorBoton } from '../elements/ElementosFormulario'
 import Boton from './../elements/Boton'
 import { ReactComponent as IconoPlus } from './../images/plus.svg'
-import DatePicker from './DatePicker'
 import SelectCategorias from './SelectCategorias'
+
+import Alerta from "../elements/Alerta"
+
 
 
 
 const FormularioGasto = () => {
+    
+    const { usuario } = useAuth()
 
     const [categoria, setCategoria] = useState('hogar')
     const [fecha, setFecha] = useState( new Date() )
@@ -18,12 +34,49 @@ const FormularioGasto = () => {
         cantidad: ''
     })
 
+    const [estadoAlerta, setEstadoAlerta] = useState(false)
+    const [alerta, setAlerta] = useState({})
+
+
     const handleSubmit = ( e ) =>{
         e.preventDefault()
 
-        console.log( { descripcion, cantidad, categoria, fecha } )
+        if( [descripcion, cantidad].includes('') ){
+            mostrarAlerta('error','Todos los campos son obligatorios')
+            return
+        }
+        if( !(parseFloat(cantidad).toFixed(2)) ){
+            mostrarAlerta('error','Por favor ingresa una cantidad válida')
+            return
+        }
+        
+        
+        agregarGasto({
+            descripcion, 
+            cantidad: parseFloat(cantidad).toFixed(2), 
+            categoria, 
+            fecha: getUnixTime(fecha),
+            uidUsuario: usuario.uid 
+        }).then( () =>{
+            mostrarAlerta('exito', 'Se agrego el gasto exitosamente')
+            resetForm()
+        }).catch((error)=>{
+            mostrarAlerta('error','Hubo un error inesperado al intentar agregar el gasto');
+            console.log('Cath',error);
+        })
+
     }
     
+
+    const mostrarAlerta = (tipo, texto) => {
+        setAlerta({ tipo, texto })
+        setEstadoAlerta(true)
+        
+        setTimeout(() => {
+            setEstadoAlerta(false)
+            setAlerta({})
+        }, 3000);
+    }
 
     return (
         <Formulario onSubmit={ handleSubmit }>
@@ -38,7 +91,7 @@ const FormularioGasto = () => {
                     id='descripcion'
                     value={descripcion}
                     onChange={ handleInputChange }
-                    placeholder='Descripcion del Gasto' />
+                    placeholder='Descripción del Gasto' />
                 <InputGrande
                     type="text"
                     name='cantidad'
@@ -52,6 +105,7 @@ const FormularioGasto = () => {
                     </Boton>
                 </ContenedorBoton>
             </div>
+            { estadoAlerta && <Alerta alerta={ alerta } /> }
         </Formulario>
     )
 }

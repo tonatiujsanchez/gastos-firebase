@@ -3,6 +3,7 @@ import { Header, Titulo, ContenedorHeader, ContenedorBotones } from "./elements/
 import Boton from "./elements/Boton";
 import BtnCerrarSesion from "./components/BtnCerrarSesion";
 import FormularioGasto from "./components/FormularioGasto";
+import BarraTotalGastado from "./components/BarraTotalGastado";
 
 
 
@@ -24,6 +25,7 @@ function App() {
                 </ContenedorHeader>
             </Header>
             <FormularioGasto />
+            <BarraTotalGastado />
         </>
     );
 }
