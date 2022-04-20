@@ -46,7 +46,7 @@ const GastosPorCategoria = () => {
                         )
                       })
                     : <ContenedorSubtitulo>
-                        <Subtitulo>No hay gastos agregados</Subtitulo>
+                        <Subtitulo>No hay gastos agregados en este mes</Subtitulo>
                         <Boton as={ Link } to="/" >Agregar Gasto</Boton>
                       </ContenedorSubtitulo>
                 }
