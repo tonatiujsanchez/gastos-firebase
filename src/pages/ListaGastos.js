@@ -3,7 +3,9 @@ import { Header, Titulo } from "./../elements/Header";
 import { Helmet } from "react-helmet";
 import BtnRegresar from "../elements/BtnRegresar";
 import BarraTotalGastado from "../components/BarraTotalGastado";
+
 import useGetGastos from "../hooks/useGetGastos";
+
 import IconoCategoria from './../components/IconoCategoria'
 import formatoMoneda from './../helpers/formatoMoneda'
 import { ReactComponent as IconoEditar } from './../images/editar.svg'
@@ -25,13 +27,14 @@ import {
 } from './../elements/ElementosLista'
 import formatoFecha from "../helpers/formatoFecha";
 import { Fragment } from "react";
+import borrarGasto from "../firebase/borrarGasto";
 
 
 
 const ListaGastos = () => {
 
     const [gastos, ultimo, cargarMas, cargando] = useGetGastos()
-    
+
 
     const fechaEsIgual = ( gastos, index, gasto ) =>{
 
@@ -43,7 +46,6 @@ const ListaGastos = () => {
             return fechaActual === fechaAnterior
         }
     }
-
 
     return (
         <>
@@ -78,7 +80,7 @@ const ListaGastos = () => {
                                             <BotonAccion as={Link} to={`/editar/${gasto.id}`}>
                                                 <IconoEditar />
                                             </BotonAccion>
-                                            <BotonAccion>
+                                            <BotonAccion onClick={ ()=> borrarGasto( gasto.id ) }>
                                                 <IconoBorrar />
                                             </BotonAccion>
                                         </ContenedorBotones>

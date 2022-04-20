@@ -7,6 +7,7 @@ import { ReactComponent as IconoHogar } from './../images/cat_hogar.svg';
 import { ReactComponent as IconoRopa } from './../images/cat_ropa.svg';
 import { ReactComponent as IconoSaludEHigiene } from './../images/cat_salud-e-higiene.svg';
 import { ReactComponent as IconoTransporte } from './../images/cat_transporte.svg';
+import { ReactComponent as IconoEducacion } from './../images/cat_educacion.svg';
 
 
 const iconosCategorias = {
@@ -17,6 +18,7 @@ const iconosCategorias = {
     "hogar"           : <IconoHogar />,
     "ropa"            : <IconoRopa />,
     "salud e higiene" : <IconoSaludEHigiene />,
+    "educacion"       : <IconoEducacion />,
     "transporte"      : <IconoTransporte />,
 }
 

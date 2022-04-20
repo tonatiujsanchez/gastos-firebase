@@ -1,16 +1,20 @@
 import styled from "styled-components"
 import formatoMoneda from "../helpers/formatoMoneda"
 import theme from "../theme"
-
+import useAuth from './../hooks/useAuth'
 
 
 const BarraTotalGastado = () => {
-  return (
-    <BarraTotal>
-        <p>Total de Gastos</p>
-        <p>{ formatoMoneda(0) }</p>
-    </BarraTotal>
-  )
+
+	const { usuario } = useAuth()
+
+	return (
+		<BarraTotal>
+			{/* <p>Total de Gastos</p> */}
+			<p>{usuario.email}</p>
+			<p>{formatoMoneda(0)}</p>
+		</BarraTotal>
+	)
 }
 
 const BarraTotal = styled.div`

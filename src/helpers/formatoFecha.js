@@ -1,6 +1,5 @@
 
 import { format, fromUnixTime} from 'date-fns'
-
 import { es } from 'date-fns/locale'
 
 const formatoFecha = ( fecha ) => {

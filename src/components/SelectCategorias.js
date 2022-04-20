@@ -19,6 +19,7 @@ const SelectCategorias = ({categoria, setCategoria}) => {
         { id: 'ropa', texto: 'Ropa' },
         { id: 'salud e higiene', texto: 'Salud e Higiene' },
         { id: 'compras', texto: 'Compras' },
+        { id: 'educacion', texto: 'Educacion' },
         { id: 'diversion', texto: 'Diversion' }
     ]
 
