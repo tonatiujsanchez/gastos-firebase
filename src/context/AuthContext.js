@@ -13,7 +13,7 @@ const AuthProvider = ({ children }) => {
   const [cargando, setCargando] = useState(true)
 
   useEffect(()=>{
-    console.log('Se comprobo la autenticación');
+
     const authSuscription = onAuthStateChanged( auth, ( user ) => {
         if (user) {
             // Esta autenticado

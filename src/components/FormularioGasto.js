@@ -54,7 +54,7 @@ const FormularioGasto = ({ gasto }) => {
             setDescripcion(gasto.descripcion)
             setCantidad(gasto.cantidad)
         }
-    }, [gasto])
+    }, [gasto, usuario, navigate])
 
 
     const handleSubmit = (e) => {

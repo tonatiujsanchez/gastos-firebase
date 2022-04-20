@@ -17,11 +17,14 @@ import RegistroUsuarios from './pages/RegistroUsuarios';
 
 import favicon from './images/logo.png'
 import Fondo from './elements/Fondo';
-import { AuthProvider } from './context/AuthContext';
 
 
 import RutaPrivada from './routes/RutaPrivada';
 import RutaPublica from './routes/RutaPublica';
+
+
+import { AuthProvider } from './context/AuthContext';
+import { TotalMesProvider } from './context/TotalMesContext';
 
 
 
@@ -45,51 +48,50 @@ const Index = () => {
             </Helmet>
             
             <AuthProvider>
-                <BrowserRouter>
-                    <Contenedor>
-                        <Routes>
-                            <Route path='/iniciar-sesion' element={ 
-                                <RutaPublica>
-                                    <InicioSesion /> 
-                                </RutaPublica>
-                            }/>
-                            <Route path='/crear-cuenta' element={ 
-                                <RutaPublica>
-                                    <RegistroUsuarios /> 
-                                </RutaPublica>
-                            }/>
+                <TotalMesProvider>
 
-                            <Route path="/categorias" element={
-                                <RutaPrivada >
-                                    <GastosPorCategoria /> 
-                                </RutaPrivada>
-                            } />
+                    <BrowserRouter>
+                        <Contenedor>
+                            <Routes>
+                                <Route path='/iniciar-sesion' element={ 
+                                    <RutaPublica>
+                                        <InicioSesion /> 
+                                    </RutaPublica>
+                                }/>
+                                <Route path='/crear-cuenta' element={ 
+                                    <RutaPublica>
+                                        <RegistroUsuarios /> 
+                                    </RutaPublica>
+                                }/>
 
-                            <Route path="/lista" element={
-                                <RutaPrivada >
-                                    <ListaGastos /> 
-                                </RutaPrivada>
-                            }/>
+                                <Route path="/categorias" element={
+                                    <RutaPrivada >
+                                        <GastosPorCategoria /> 
+                                    </RutaPrivada>
+                                } />
 
-                            <Route path="/editar/:id" element={
-                                <RutaPrivada >
-                                    <EditarGasto /> 
-                                </RutaPrivada>
-                            }/>
+                                <Route path="/lista" element={
+                                    <RutaPrivada >
+                                        <ListaGastos /> 
+                                    </RutaPrivada>
+                                }/>
 
-                            <Route path="/" element={
-                                <RutaPrivada >
-                                    <App /> 
-                                </RutaPrivada>
-                            }/>
+                                <Route path="/editar/:id" element={
+                                    <RutaPrivada >
+                                        <EditarGasto /> 
+                                    </RutaPrivada>
+                                }/>
 
-                            {/* <Route path='/categorias' element={ <GastosPorCategoria /> } />
-                            <Route path='/lista' element={ <ListaGastos /> } />
-                            <Route path='/editar/:id' element={ <EditarGasto /> } />
-                            <Route path='/' element={ <App /> } /> */}
-                        </Routes>
-                    </Contenedor>
-                </BrowserRouter>
+                                <Route path="/" element={
+                                    <RutaPrivada >
+                                        <App /> 
+                                    </RutaPrivada>
+                                }/>
+                            </Routes>
+                        </Contenedor>
+                    </BrowserRouter>
+
+                </TotalMesProvider>
             </AuthProvider>
             <Fondo />
         </>
