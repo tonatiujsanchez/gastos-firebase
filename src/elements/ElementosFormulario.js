@@ -25,6 +25,7 @@ const Formulario = styled.form`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
+	overflow: hidden;
 	input {
 		width: 100%;
 		text-align: center;

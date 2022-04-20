@@ -52,8 +52,7 @@ const InicioSesion = () => {
 
     const iniciarSesion = async( email, password ) =>{
         try {
-            const userCredential = await signInWithEmailAndPassword( auth, email, password )
-            console.log( userCredential.user )
+            await signInWithEmailAndPassword( auth, email, password )
             navigate('/')
         } catch (error) {
             const errorCode = error.code

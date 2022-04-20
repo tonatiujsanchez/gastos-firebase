@@ -5,6 +5,7 @@ import useGastosDelMes from "./useGastosDelMes"
 const useGastosDelMesPorCategorias = () => {
   
     const [gastosCategorias, setGastosCategorias] = useState([])
+    const [cargando, setCargando] = useState(true)
     const [gastoMes] = useGastosDelMes()
 
 
@@ -26,11 +27,11 @@ const useGastosDelMesPorCategorias = () => {
         },{})
         
         setGastosCategorias( Object.values(categorias) );
-
+        setCargando( false )
     },[gastoMes])
 
 
-    return [ gastosCategorias ]
+    return [ gastosCategorias, cargando ]
 }
 
 export default useGastosDelMesPorCategorias
